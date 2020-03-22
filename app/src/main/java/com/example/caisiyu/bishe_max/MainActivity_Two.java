@@ -1,16 +1,24 @@
 package com.example.caisiyu.bishe_max;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.DialogPreference;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +44,7 @@ import okhttp3.ResponseBody;
 
 public class MainActivity_Two extends ActionBarActivity {
     private Button Btn_deng, Btn_huo, Btn_feng, Btn_men;
+    private DrawerLayout mdrawerLayout;
     private TextView Text_wendu;
     private TextView Text_shidu;
     private TextView Text_fengsu;
@@ -48,10 +57,14 @@ public class MainActivity_Two extends ActionBarActivity {
 
     private List<Fruit> fruitList = new ArrayList<Fruit>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity__two);
+
+
+
         timer=new Timer();      //定义一个定时器
 //        on_timer_Stop();      //调用 cancel后 就不能调用schedule语句，否则提示出错，提示如下：
         ui_init();
@@ -69,9 +82,33 @@ public class MainActivity_Two extends ActionBarActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     Toast.makeText(MainActivity_Two.this, "这是第一个", Toast.LENGTH_SHORT).show();
+                    mdrawerLayout.closeDrawer(Gravity.START);
                 }
                 if (i == 1) {
                     Toast.makeText(MainActivity_Two.this, "这是第二个", Toast.LENGTH_SHORT).show();
+                    mdrawerLayout.closeDrawer(Gravity.START);
+                }
+                if (i == 4) {
+//                    Toast.makeText(MainActivity_Two.this, "这是第si个", Toast.LENGTH_SHORT).show();
+                    final EditText editText = new EditText(MainActivity_Two.this);
+                    editText.setFocusable(true);
+                    new AlertDialog.Builder(MainActivity_Two.this).setTitle("请输入你的评价:")
+                            .setIcon(R.drawable.mosike)
+                            .setView(editText)
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (TextUtils.isEmpty(editText.getText().toString()) == false) {
+                                        String str = String.format("http://118.178.59.37:1880/Android_Callback?Message=%s", editText.getText().toString());
+                                        okhttp_Request(str);
+                                        Toast.makeText(MainActivity_Two.this, "十分感谢你的评价！！！", Toast.LENGTH_SHORT).show();
+//                                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + editText.getText().toString());
+                                    } else {
+                                        Toast.makeText(MainActivity_Two.this, "你没有填写评价内容！！！", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).setNegativeButton("取消", null).show();
+                    mdrawerLayout.closeDrawer(Gravity.START);
                 }
             }
         });
@@ -153,6 +190,7 @@ public class MainActivity_Two extends ActionBarActivity {
         Text_state_guangzhao = (TextView) findViewById(R.id.text_state_guangzhao);
         TextView user_name = (TextView) findViewById(R.id.User_name);
         Shebei_State = (TextView) findViewById(R.id.Shebei_State);
+        mdrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         Intent intent = getIntent();
         user_name.setText(intent.getStringExtra("User"));
@@ -276,10 +314,16 @@ public class MainActivity_Two extends ActionBarActivity {
 
 
     private void initFruits() {
-        Fruit apple = new Fruit("这是第一个", R.drawable.shutiao);
+        Fruit apple = new Fruit("MQTT", R.drawable.fushishen);
         fruitList.add(apple);
-        Fruit banana = new Fruit("这是第二个", R.drawable.shutiao);
+        Fruit banana = new Fruit("baidu语音", R.drawable.jiudian);
         fruitList.add(banana);
+        Fruit cai1 = new Fruit("智能配网", R.drawable.fenghxe);
+        fruitList.add(cai1);
+        Fruit cai2 = new Fruit("数据缓存", R.drawable.mosike);
+        fruitList.add(cai2);
+        Fruit callback = new Fruit("反馈", R.drawable.callback);
+        fruitList.add(callback);
     }
 
 
