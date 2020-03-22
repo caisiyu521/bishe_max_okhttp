@@ -13,13 +13,14 @@ import java.util.List;
 public class FruitAdapter extends ArrayAdapter {
     private final int resourceId;
 
-    public FruitAdapter(Context context, int textViewResourceId, List<MainActivity.Fruit> objects) {
+    public FruitAdapter(Context context, int textViewResourceId, List<MainActivity_Two.Fruit> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MainActivity.Fruit fruit = (MainActivity.Fruit) getItem(position); // 获取当前项的Fruit实例
+        MainActivity_Two.Fruit fruit = (MainActivity_Two.Fruit) getItem(position); // 获取当前项的Fruit实例
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
         ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);//获取该布局内的图片视图
         TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);//获取该布局内的文本视图

@@ -45,6 +45,7 @@ public class MainActivity_Two extends ActionBarActivity {
     private Timer timer;
     private int Connect_Flag = 0; //在request消息回调是 做标志位
     private int Connect_Back_Message = 0;
+
     private List<Fruit> fruitList = new ArrayList<Fruit>();
 
     @Override
@@ -58,7 +59,7 @@ public class MainActivity_Two extends ActionBarActivity {
         on_timer_start();
 
         initFruits(); // 初始化水果数据
-        FruitAdapter adapter = new FruitAdapter(MainActivity.this, R.layout.list_item, fruitList);
+        FruitAdapter adapter = new FruitAdapter(MainActivity_Two.this, R.layout.list_item, fruitList);
         ListView listView = (ListView) findViewById(R.id.MyListView);
         listView.setAdapter(adapter);
 
@@ -67,10 +68,10 @@ public class MainActivity_Two extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    Toast.makeText(MainActivity.this, "这是第一个", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity_Two.this, "这是第一个", Toast.LENGTH_SHORT).show();
                 }
                 if (i == 1) {
-                    Toast.makeText(MainActivity.this, "这是第二个", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity_Two.this, "这是第二个", Toast.LENGTH_SHORT).show();
                 }
             }
         });
