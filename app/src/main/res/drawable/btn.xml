@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape>
+            <corners
+                android:bottomLeftRadius="15dp"
+                android:bottomRightRadius="15dp"
+                android:topLeftRadius="15dp"
+                android:topRightRadius="15dp" />
+            <!-- 设置填充颜色 -->
+            <solid android:color="#666666" />
+            <!-- 设置边框颜色 -->
+            <stroke android:width="2dp" android:color="#333366"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <corners
+                android:bottomLeftRadius="15dp"
+                android:bottomRightRadius="15dp"
+                android:topLeftRadius="15dp"
+                android:topRightRadius="15dp" />
+            <!-- 璁剧疆濉厖棰滆壊 -->
+            <solid android:color="#336666" />
+            <!-- 璁剧疆杈规棰滆壊 -->
+            <stroke android:width="2dp" android:color="#333366"/>
+        </shape>
+    </item>
+</selector>
+

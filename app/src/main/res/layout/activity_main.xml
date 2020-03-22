@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.caisiyu.activity_stwich.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/qidong"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <!--  paddingBottom    表示 控件里面的内容 距控件底部的距离 -->
+        <!--   margin          表示控件距离其他空间的距离-->
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:alpha="0"
+                android:layout_height="50dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+            </View>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="仓库管理系统"
+                android:textColor="#DDDDDD"
+                android:textSize="30sp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="30dp"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Welcome"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="#99000000"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textColor="#9F9FA0"
+                android:id="@+id/username"
+                android:text="admin"
+                android:textColorHint="#9F9FA0"
+                android:hint="your username"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+            </View>
+            <EditText
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textColor="#9F9FA0"
+                android:textColorHint="#9F9FA0"
+                android:text="public"
+                android:hint="your password"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+            </View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="30dp"
+            android:paddingTop="20dp"
+            android:background="#99404348"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Forget Password?"
+                android:textColor="#DDDDDD"
+                android:textSize="15sp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:text="Tap Here"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="110dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/buttonstyle"
+                android:text="Login"
+                android:id="@+id/login"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="110dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/buttonstyle"
+                android:layout_marginRight="40dp"
+                android:text="Sign in"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:alpha="0"
+            android:layout_height="100dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="right"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:text="caisiyu"
+                android:textColor="#999999"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+

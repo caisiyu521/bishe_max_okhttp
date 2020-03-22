@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="caisiyu.com.MainActivity_two">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/qidong"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content">
+            <!-- 获取 用户名   -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="欢迎："
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/User_name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#83738F"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp">
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+            <!-- 获取 项目简介   -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/background_gradient"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="仓库移动端控制系统"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="基于嵌入式Linux\n使用web api\n(GET请求方法)\n获取服务器数据"
+                    android:textColor="#993333"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/background_gradient"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="硬件版本：V4.0"
+                    android:textColor="#993333"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="0dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="设备状态："
+                        android:textColor="#993333"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="在线"
+                        android:id="@+id/Shebei_State"
+                        android:textColor="#993333"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="休眠状态：否"
+                    android:textColor="#993333"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="0dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--开始显示数据框-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <!--显示数据框  第一行 温度-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <!-- 温度-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/wendu"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="温度: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="loading"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_wendu"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  ℃"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  自检："
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1.5"
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="正常"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_state_wendu"
+                    android:textSize="20dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0.5dp">
+            </View>
+
+            <!--显示数据框  第二行 湿度-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <!-- 湿度-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/shidu"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="湿度: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="loading"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_shidu"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  %rh"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  自检："
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1.5"
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="正常"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_state_shidu"
+                    android:textSize="20dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0.5dp">
+            </View>
+
+            <!--显示数据框  第三行 风速-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <!-- 光照强度-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/fengsu"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="风速: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="loading"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_fengsu"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  m/s"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  自检："
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1.5"
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="正常"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:id="@+id/text_state_fensu"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0.5dp">
+            </View>
+
+            <!--显示数据框  第四行 光照强度-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <!-- 光照强度-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/guangzhao"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="光照\n强度: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="loading"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/text_guangzhao"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  Lux"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="  自检："
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1.5"
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="正常"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:id="@+id/text_state_guangzhao"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#83738F"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0.5dp">
+            </View>
+        </LinearLayout>
+        <!--            按键区域             -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn"
+                    android:text="开启仓库灯"
+                    android:onClick="onClick"
+                    android:id="@+id/btn_deng"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/btn_huo"
+                    android:text="开启仓库的灭火装置"
+                    android:background="@drawable/btn"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="开启通风器"
+                    android:id="@+id/btn_feng"
+                    android:onClick="onClick"
+                    android:background="@drawable/btn"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="15dp"
+                    android:text="开启仓库门"
+                    android:onClick="onClick"
+                    android:id="@+id/btn_men"
+                    android:background="@drawable/btn"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="caisiyu"
+                android:textSize="30dp"
+                android:textColor="#FFFFCC"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+
+
