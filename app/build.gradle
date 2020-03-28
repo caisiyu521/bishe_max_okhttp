@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile files('libs/okhttp-3.2.0.jar')
     compile files('libs/okio-1.9.0.jar')
+    compile files('libs/mpandroidchartlibrary-2-1-6.jar')
 }

@@ -2,12 +2,14 @@ package com.example.caisiyu.bishe_max;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.preference.DialogPreference;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +56,8 @@ public class MainActivity_Two extends ActionBarActivity {
     private TextView Text_state_wendu, Text_state_shidu, Text_state_fengsu, Text_state_guangzhao,Shebei_State;
     private Handler handler;
     private Timer timer;
+    private Vibrator vibrator;
+    private ImageView Dream_zhedie;
 //    private int Connect_Flag = 0; //在request消息回调是 做标志位
 //    private int Connect_Back_Message = 0;
 
@@ -63,6 +68,8 @@ public class MainActivity_Two extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity__two);
+        vibrator=(Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
+
 
         timer=new Timer();      //定义一个定时器
 //        on_timer_Stop();      //调用 cancel后 就不能调用schedule语句，否则提示出错，提示如下：
@@ -82,22 +89,34 @@ public class MainActivity_Two extends ActionBarActivity {
                 if (i == 0) {
                     Toast.makeText(MainActivity_Two.this, "这是第一个", Toast.LENGTH_SHORT).show();
                     mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
                 }
                 if (i == 1) {
                     Toast.makeText(MainActivity_Two.this, "这是第二个", Toast.LENGTH_SHORT).show();
                     mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
+                }
+                if (i == 2) {
+                    Toast toast = Toast.makeText(MainActivity_Two.this, "姓名：\t\t\t蔡思宇\r\n学校：\t\t\t郑州升达经贸管理学院\r\n班级：\t\t\t电子信息工程1班\r\n联系QQ：\t2455861209", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM,10,250);
+                    toast.show();
+                    mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
                 }
                 if (i == 3) {
                     Intent intent = new Intent(MainActivity_Two.this, MainActivity_three_quxian.class);
                     startActivity(intent);
+                    mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
 //                    finish();     //在另一个界面 点返回还能返回回来 ，并没有 删除当前界面
                 }
                 if (i == 4) {
 //                    Toast.makeText(MainActivity_Two.this, "这是第si个", Toast.LENGTH_SHORT).show();
                     final EditText editText = new EditText(MainActivity_Two.this);
                     editText.setFocusable(true);
-                    new AlertDialog.Builder(MainActivity_Two.this).setTitle("请输入你的评价:")
-                            .setIcon(R.drawable.mosike)
+                    new AlertDialog.Builder(MainActivity_Two.this)
+                            .setTitle("请输入你的评价:")
+                            .setIcon(R.drawable.pingjia)
                             .setView(editText)
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
@@ -111,14 +130,32 @@ public class MainActivity_Two extends ActionBarActivity {
                                         Toast.makeText(MainActivity_Two.this, "你没有填写评价内容！！！", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }).setNegativeButton("取消", null).show();
+                            })
+                            .setNegativeButton("取消", null).show();
                     mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
+                }
+                if (i == 5) {
+                    new AlertDialog.Builder(MainActivity_Two.this)
+                            .setTitle("警告~")
+                            .setIcon(R.drawable.tishi)
+                            .setMessage("确定要退出程序吗？")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    System.exit(0);
+                                }
+                            })
+                            .show();
+                    mdrawerLayout.closeDrawer(Gravity.START);
+                    vibrator.vibrate(100);//震动一次，时长为100
                 }
             }
         });
 
         handler = new Handler() {
-            public void handleMessage(Message msg) {
+                public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 0:
@@ -209,6 +246,7 @@ public class MainActivity_Two extends ActionBarActivity {
         TextView user_name = (TextView) findViewById(R.id.User_name);
         Shebei_State = (TextView) findViewById(R.id.Shebei_State);
         mdrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Dream_zhedie = (ImageView)findViewById(R.id.imag_zhedie);
 
         Intent intent = getIntent();
         user_name.setText(intent.getStringExtra("User"));
@@ -259,7 +297,10 @@ public class MainActivity_Two extends ActionBarActivity {
                     Btn_men.setText("开启仓库门");
                 }
                 break;
-
+            case R.id.imag_zhedie:
+                mdrawerLayout.openDrawer(Gravity.START);
+                vibrator.vibrate(100);//震动一次，时长为100
+                break;
             default:
                 break;
         }
@@ -338,16 +379,18 @@ public class MainActivity_Two extends ActionBarActivity {
 
 
     private void initFruits() {
-        Fruit apple = new Fruit("MQTT", R.drawable.fushishen);
+        Fruit apple = new Fruit("MQTT", R.drawable.mqtt);
         fruitList.add(apple);
         Fruit banana = new Fruit("baidu语音", R.drawable.jiudian);
         fruitList.add(banana);
-        Fruit cai1 = new Fruit("智能配网", R.drawable.fenghxe);
+        Fruit cai1 = new Fruit("关于作者", R.drawable.zuozhe);
         fruitList.add(cai1);
-        Fruit cai2 = new Fruit("显示曲线图", R.drawable.mosike);
+        Fruit cai2 = new Fruit("显示曲线图", R.drawable.zhexian1);
         fruitList.add(cai2);
-        Fruit callback = new Fruit("反馈", R.drawable.callback);
+        Fruit callback = new Fruit("反馈", R.drawable.fankui);
         fruitList.add(callback);
+        Fruit tuichau = new Fruit("退出", R.drawable.exit);
+        fruitList.add(tuichau);
     }
 
 
