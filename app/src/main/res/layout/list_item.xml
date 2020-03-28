@@ -14,5 +14,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginLeft="40dip" />
+        android:layout_marginLeft="35dip" />
 </LinearLayout>

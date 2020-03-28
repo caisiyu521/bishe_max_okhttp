@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.caisiyu.bishe_max">
 
-    <uses-permission android:name="android.permission.INTERNET"/>               //打开网络权限.
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>   //获取网络连接状态
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    //打开网络权限.
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    //获取网络连接状态
     <application
         android:allowBackup="true"
         android:icon="@drawable/cangku"
@@ -19,9 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity_Two"></activity>
+        <activity android:name=".MainActivity_Two" />
+        <activity android:name=".MainActivity_three_quxian"></activity>
     </application>
 
-</manifest>
-    <!--<activity android:name=".MainActivity_Two" />-->
+</manifest> <!-- <activity android:name=".MainActivity_Two" /> -->

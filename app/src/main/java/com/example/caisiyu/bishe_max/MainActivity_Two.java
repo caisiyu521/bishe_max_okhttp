@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -52,8 +53,8 @@ public class MainActivity_Two extends ActionBarActivity {
     private TextView Text_state_wendu, Text_state_shidu, Text_state_fengsu, Text_state_guangzhao,Shebei_State;
     private Handler handler;
     private Timer timer;
-    private int Connect_Flag = 0; //在request消息回调是 做标志位
-    private int Connect_Back_Message = 0;
+//    private int Connect_Flag = 0; //在request消息回调是 做标志位
+//    private int Connect_Back_Message = 0;
 
     private List<Fruit> fruitList = new ArrayList<Fruit>();
 
@@ -63,12 +64,10 @@ public class MainActivity_Two extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity__two);
 
-
-
         timer=new Timer();      //定义一个定时器
 //        on_timer_Stop();      //调用 cancel后 就不能调用schedule语句，否则提示出错，提示如下：
         ui_init();
-        okhttp_Request("http://118.178.59.37:1880/Android_Respond?environment=1");
+//        okhttp_Request("http://118.178.59.37:1880/Android_Respond?environment=1");
         on_timer_start();
 
         initFruits(); // 初始化水果数据
@@ -88,6 +87,11 @@ public class MainActivity_Two extends ActionBarActivity {
                     Toast.makeText(MainActivity_Two.this, "这是第二个", Toast.LENGTH_SHORT).show();
                     mdrawerLayout.closeDrawer(Gravity.START);
                 }
+                if (i == 3) {
+                    Intent intent = new Intent(MainActivity_Two.this, MainActivity_three_quxian.class);
+                    startActivity(intent);
+//                    finish();     //在另一个界面 点返回还能返回回来 ，并没有 删除当前界面
+                }
                 if (i == 4) {
 //                    Toast.makeText(MainActivity_Two.this, "这是第si个", Toast.LENGTH_SHORT).show();
                     final EditText editText = new EditText(MainActivity_Two.this);
@@ -98,7 +102,7 @@ public class MainActivity_Two extends ActionBarActivity {
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    if (TextUtils.isEmpty(editText.getText().toString()) == false) {
+                                    if (!TextUtils.isEmpty(editText.getText().toString())) {
                                         String str = String.format("http://118.178.59.37:1880/Android_Callback?Message=%s", editText.getText().toString());
                                         okhttp_Request(str);
                                         Toast.makeText(MainActivity_Two.this, "十分感谢你的评价！！！", Toast.LENGTH_SHORT).show();
@@ -118,12 +122,17 @@ public class MainActivity_Two extends ActionBarActivity {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 0:
-//                        System.out.println("/////////////////////////////////////////////////");
                         okhttp_Request("http://118.178.59.37:1880/Android_Respond?environment=1");      //请求数据
                         break;
                     case 1:
-                        String  msg_json = msg.obj.toString();//                        System.out.println("ConnectionSuccess----------" + msg.obj.toString());
+                        String  msg_json = msg.obj.toString();//
+//                         System.out.println("ConnectionSuccess----------" + msg.obj.toString());
                         Node_red_Data_Process(msg_json);
+                        handler.removeMessages(1); //销毁消息
+                        break;
+                    case 2:
+                        String  msg_json1 = msg.obj.toString();//
+                        Node_red_Data_Failed_SetUI(msg_json1);
                         handler.removeMessages(1); //销毁消息
                         break;
                     default:
@@ -132,42 +141,51 @@ public class MainActivity_Two extends ActionBarActivity {
             }
 
         };
+    }
 
+    public void Node_red_Data_Failed_SetUI(String msg_json){
+//        System.out.println("ConnectionSuccess----------" + msg_json.toString());
+        Text_wendu.setText("0");
+        Text_shidu.setText("0");
+        Text_fengsu.setText("0");
+        Text_guangzhao.setText("0");
+        Text_state_wendu.setText("错误");
+        Text_state_shidu.setText("错误");
+        Text_state_fengsu.setText("错误");
+        Text_state_guangzhao.setText("错误");
+        Shebei_State.setText("离线");
+
+        Text_state_wendu.setTextColor(Color.RED);
+        Text_state_shidu.setTextColor(Color.RED);
+        Text_state_guangzhao.setTextColor(Color.RED);
+        Text_state_fengsu.setTextColor(Color.RED);
     }
 
     public void Node_red_Data_Process(String msg_json){
-        if(Connect_Flag == 1){
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(msg_json);
-                String wendu = jsonObject.getString("wendu");
-                String shidu = jsonObject.getString("shidu");
-                String fengsu = jsonObject.getString("fengsu");
-                String guangzhao = jsonObject.getString("guangzhao");
-                Text_wendu.setText(wendu);
-                Text_shidu.setText(shidu);
-                Text_fengsu.setText(fengsu);
-                Text_guangzhao.setText(guangzhao);
-                Text_state_wendu.setText("正常");
-                Text_state_shidu.setText("正常");
-                Text_state_fengsu.setText("正常");
-                Text_state_guangzhao.setText("正常");
-                Shebei_State.setText("在线");
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(msg_json);
+            String wendu = jsonObject.getString("wendu");
+            String shidu = jsonObject.getString("shidu");
+            String fengsu = jsonObject.getString("fengsu");
+            String guangzhao = jsonObject.getString("guangzhao");
+            Text_wendu.setText(wendu);
+            Text_shidu.setText(shidu);
+            Text_fengsu.setText(fengsu);
+            Text_guangzhao.setText(guangzhao);
+            Text_state_wendu.setText("正常");
+            Text_state_shidu.setText("正常");
+            Text_state_fengsu.setText("正常");
+            Text_state_guangzhao.setText("正常");
+            Shebei_State.setText("在线");
+
+            Text_state_wendu.setTextColor(Color.WHITE);
+            Text_state_shidu.setTextColor(Color.WHITE);
+            Text_state_guangzhao.setTextColor(Color.WHITE);
+            Text_state_fengsu.setTextColor(Color.WHITE);
 //            System.out.println("wendu=" + wendu + "shidu=" + shidu + msg_json);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Text_wendu.setText("0");
-            Text_shidu.setText("0");
-            Text_fengsu.setText("0");
-            Text_guangzhao.setText("0");
-            Text_state_wendu.setText("错误");
-            Text_state_shidu.setText("错误");
-            Text_state_fengsu.setText("错误");
-            Text_state_guangzhao.setText("错误");
-            Shebei_State.setText("离线");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -250,7 +268,7 @@ public class MainActivity_Two extends ActionBarActivity {
 
     public void  okhttp_Request(String url) {
 //        final String result = "0";
-        Connect_Flag = 0;
+//        Connect_Flag = 0;
         //创建OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -268,8 +286,12 @@ public class MainActivity_Two extends ActionBarActivity {
             //请求错误回调方法
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("**********************************************************************");
-                Connect_Flag = 0;
+                System.out.println("********************************get请求失败**************************************");
+//                Connect_Flag = 0;
+                Message msg = new Message();
+                msg.what = 2;   //收到消息标志位
+                msg.obj = "failed";
+                handler.sendMessage(msg);    // hander 回传
             }
             //异步请求(非主线程)
             @Override
@@ -281,21 +303,23 @@ public class MainActivity_Two extends ActionBarActivity {
 
                 if (response.code() == 200) {
 //                    System.out.println("接受成功");
-                    Connect_Flag = 1;
-                }
-                ResponseBody body = response.body();
+//                    Connect_Flag = 1;
+
+                    ResponseBody body = response.body();
                     //这里的body.string 只能调用一次，第二次会被进程销毁清空。如需要多次使用，可以用变量转存
-                Message msg = new Message();
-                msg.what = 1;   //收到消息标志位
-                msg.obj = body.string();
-                handler.sendMessage(msg);    // hander 回传
+                    Message msg = new Message();
+                    msg.what = 1;   //收到消息标志位
+                    msg.obj = body.string();
+                    handler.sendMessage(msg);    // hander 回传
+                }
+
             }
         });
     }
 
     public void on_timer_start(){
         super.onStart();
-        timer.schedule(task,1000,1000);//等1s前   间隔1s偶
+        timer.schedule(task,500,5000);//等1s前   间隔1s偶
     }
 
     public void on_timer_Stop(){
@@ -320,7 +344,7 @@ public class MainActivity_Two extends ActionBarActivity {
         fruitList.add(banana);
         Fruit cai1 = new Fruit("智能配网", R.drawable.fenghxe);
         fruitList.add(cai1);
-        Fruit cai2 = new Fruit("数据缓存", R.drawable.mosike);
+        Fruit cai2 = new Fruit("显示曲线图", R.drawable.mosike);
         fruitList.add(cai2);
         Fruit callback = new Fruit("反馈", R.drawable.callback);
         fruitList.add(callback);
